@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>Pitagorasz</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    #canvas{
+   width: 500px;
+   height: 500px;
+   border: 1px solid cyan;
+    }
+  </style>
+</head>
+<body>
+  <img src="haromszog.png" alt="kep">
+  <fieldset>
+    <legend>Adj meg két értéket!</legend>
+<label>A oldal:<input type="number" id="a"></label><br>
+<label>B oldal:<input type="number" id="b"></label><br>
+<button onclick="calculate()">Számol</button>
+<p id="result"></p>
+<canvas id="canvas"></canvas>
+</fieldset>
+
+<script src="script.js">
+function calculate() {
+var a = parsFloat(document.getElementById("a").value);
+var b = parsFloat(document.getElementById("b").value);
+var c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+document.getElementById("result").innerHTML = "A C oldal hossza: " + c.toFixed(2);
+
+
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+ctx.beginPath();
+ctx.moveTo(50, 50);
+ctx.lineTo(50, 50 + b * 10);
+ctx.lineTo(50 + a * 10, 50 + b * 10);
+ctx.closePath();
+ctx.stroke();
+}
+</script>
+</body>
+</html>
